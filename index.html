@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Web Application</title>
+
+  <style>
+
+    /* ==== CSS Styling ==== */
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      font-family: Arial, sans-serif;
+
+    }
+
+    body {
+
+      background: #f0f2f5;
+
+      color: #333;
+
+      line-height: 1.6;
+
+    }
+
+    header {
+
+      background: #0077b6;
+
+      color: white;
+
+      padding: 1.5rem 0;
+
+      text-align: center;
+
+    }
+
+    header h1 {
+
+      font-size: 2rem;
+
+    }
+
+    nav {
+
+      margin-top: 10px;
+
+    }
+
+    nav a {
+
+      color: white;
+
+      margin: 0 15px;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+    }
+
+    nav a:hover {
+
+      text-decoration: underline;
+
+    }
+
+    main {
+
+      max-width: 800px;
+
+      margin: 20px auto;
+
+      padding: 20px;
+
+      background: white;
+
+      border-radius: 10px;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    }
+
+    section {
+
+      margin-bottom: 30px;
+
+    }
+
+    h2 {
+
+      color: #0077b6;
+
+      margin-bottom: 10px;
+
+    }
+
+    p {
+
+      margin-bottom: 15px;
+
+    }
+
+    /* Contact Form */
+
+    form {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+    input, textarea, button {
+
+      padding: 10px;
+
+      margin: 8px 0;
+
+      border: 1px solid #ccc;
+
+      border-radius: 5px;
+
+    }
+
+    button {
+
+      background: #0077b6;
+
+      color: white;
+
+      border: none;
+
+      cursor: pointer;
+
+      font-weight: bold;
+
+      transition: background 0.3s;
+
+    }
+
+    button:hover {
+
+      background: #005f87;
+
+    }
+
+    .message {
+
+      margin-top: 10px;
+
+      font-weight: bold;
+
+    }
+
+    /* Responsive */
+
+    @media (max-width: 600px) {
+
+      main {
+
+        margin: 10px;
+
+        padding: 15px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ==== HTML Structure ==== -->
+
+  <header>
+
+    <h1>My Simple Web Application</h1>
+
+    <nav>
+
+      <a href="#about">About</a>
+
+      <a href="#projects">Projects</a>
+
+      <a href="#contact">Contact</a>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <!-- About Section -->
+
+    <section id="about">
+
+      <h2>About</h2>
+
+      <p>This is a simple web application built using HTML, CSS, and JavaScript. 
+
+      It demonstrates structure, styling, and interactivity in one project.</p>
+
+    </section>
+
+    <!-- Projects Section -->
+
+    <section id="projects">
+
+      <h2>Projects</h2>
+
+      <p>Here are some of my sample projects:</p>
+
+      <ul>
+
+        <li>📌 Portfolio Website</li>
+
+        <li>📌 To-Do List App</li>
+
+        <li>📌 Calculator</li>
+
+      </ul>
+
+    </section>
+
+    <!-- Contact Section with Form -->
+
+    <section id="contact">
+
+      <h2>Contact Me</h2>
+
+      <form id="contactForm">
+
+        <input type="text" id="name" placeholder="Your Name" required>
+
+        <input type="email" id="email" placeholder="Your Email" required>
+
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+
+        <button type="submit">Send Message</button>
+
+      </form>
+
+      <p class="message" id="formMessage"></p>
+
+    </section>
+
+  </main>
+
+  <!-- ==== JavaScript Interactivity ==== -->
+
+  <script>
+
+    const form = document.getElementById("contactForm");
+
+    const formMessage = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault(); // Prevent page reload
+
+      const name = document.getElementById("name").value.trim();
+
+      const email = document.getElementById("email").value.trim();
+
+      const message = document.getElementById("message").value.trim();
+
+      if (name === "" || email === "" || message === "") {
+
+        formMessage.textContent = "⚠️ Please fill in all fields.";
+
+        formMessage.style.color = "red";
+
+      } else if (!validateEmail(email)) {
+
+        formMessage.textContent = "⚠️ Invalid email format.";
+
+        formMessage.style.color = "red";
+
+      } else {
+
+        formMessage.textContent = "✅ Thank you, " + name + "! Your message has been sent.";
+
+        formMessage.style.color = "green";
+
+        form.reset();
+
+      }
+
+    });
+
+    function validateEmail(email) {
+
+      const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+      return re.test(email);
+
+    }
+
+  </script>
+
+</body>
+
+</html>
